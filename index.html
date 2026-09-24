@@ -1,167 +1,1254 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
   <meta name="theme-color" content="#25346f">
-  <meta name="application-name" content="Einsatzfotos">
-  <meta name="apple-mobile-web-app-title" content="Einsatzfotos">
 
-  <title>Einsatzfotos – Feuerwehr St. Pölten-Stadt</title>
+  <meta
+    name="application-name"
+    content="Einsatzfotos"
+  >
 
-  <link rel="icon" type="image/png" sizes="512x512" href="./einsatzfotos-icon-kamera.png?v=20260922b">
-  <link rel="shortcut icon" type="image/png" href="./einsatzfotos-icon-kamera.png?v=20260922b">
-  <link rel="apple-touch-icon" sizes="180x180" href="./einsatzfotos-icon-kamera.png?v=20260922b">
+  <meta
+    name="apple-mobile-web-app-title"
+    content="Einsatzfotos"
+  >
+
+  <meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+  >
+
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="default"
+  >
+
+
+  <title>
+    Einsatzfotos – Feuerwehr St. Pölten-Stadt
+  </title>
+
+
+  <!-- =====================================================
+       PWA
+       ===================================================== -->
+
+  <link
+    rel="manifest"
+    href="./manifest.json"
+  >
+
+
+  <!-- =====================================================
+       ICONS
+       ===================================================== -->
+
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="512x512"
+    href="./einsatzfotos-icon-kamera.png?v=20260924"
+  >
+
+  <link
+    rel="shortcut icon"
+    type="image/png"
+    href="./einsatzfotos-icon-kamera.png?v=20260924"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="./einsatzfotos-icon-kamera.png?v=20260924"
+  >
+
 
   <style>
+
     * {
-      box-sizing: border-box;
+      box-sizing:border-box;
     }
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: #f4f6fa;
-      font-family: Arial, Helvetica, sans-serif;
+
+    html,
+    body {
+
+      margin:0;
+      padding:0;
+
+      width:100%;
+      height:100%;
+
+      overflow:hidden;
+
+      background:#f4f6fa;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
     }
+
+
+    /* =====================================================
+       GOOGLE APPS SCRIPT
+       ===================================================== */
 
     iframe {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      display: block;
-      background: #f4f6fa;
+
+      position:fixed;
+
+      inset:0;
+
+      width:100%;
+      height:100%;
+
+      border:0;
+
+      display:block;
+
+      background:#f4f6fa;
     }
+
+
+    /* =====================================================
+       LOADING
+       ===================================================== */
 
     #loading {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 22px;
-      background: linear-gradient(135deg, #f4f6fa, #eef1fb);
+
+      position:fixed;
+
+      inset:0;
+
+      z-index:9999;
+
+      display:flex;
+
+      align-items:center;
+      justify-content:center;
+
+      padding:22px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f4f6fa,
+          #eef1fb
+        );
     }
+
 
     .card {
-      width: min(420px, 100%);
-      padding: 28px 22px;
-      border: 1px solid #e4e8f0;
-      border-radius: 22px;
-      background: #fff;
-      box-shadow: 0 10px 35px rgba(38,54,111,.10);
-      text-align: center;
+
+      width:min(420px,100%);
+
+      padding:28px 22px;
+
+      border:
+        1px solid #e4e8f0;
+
+      border-radius:22px;
+
+      background:#fff;
+
+      box-shadow:
+        0 10px 35px
+        rgba(38,54,111,.10);
+
+      text-align:center;
     }
+
 
     .app-icon {
-      position: relative;
-      width: 88px;
-      height: 88px;
-      margin: 0 auto 14px;
+
+      position:relative;
+
+      width:88px;
+      height:88px;
+
+      margin:
+        0 auto 14px;
     }
+
 
     .app-icon img {
-      width: 88px;
-      height: 88px;
-      object-fit: contain;
-      display: block;
-      padding: 5px;
-      border-radius: 22px;
-      background: #fff;
-      border: 1px solid #e4e8f0;
-      box-shadow: 0 8px 22px rgba(38,54,111,.10);
+
+      width:88px;
+      height:88px;
+
+      object-fit:contain;
+
+      display:block;
+
+      padding:5px;
+
+      border-radius:22px;
+
+      background:#fff;
+
+      border:
+        1px solid #e4e8f0;
+
+      box-shadow:
+        0 8px 22px
+        rgba(38,54,111,.10);
     }
+
 
     .brand {
-      margin-bottom: 7px;
-      color: #34499a;
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: .08em;
+
+      margin-bottom:7px;
+
+      color:#34499a;
+
+      font-size:10px;
+
+      font-weight:900;
+
+      letter-spacing:.08em;
     }
+
 
     h1 {
-      margin: 0;
-      color: #25346f;
-      font-size: 24px;
-      line-height: 1.15;
+
+      margin:0;
+
+      color:#25346f;
+
+      font-size:24px;
+
+      line-height:1.15;
     }
+
 
     p {
-      margin: 8px 0 0;
-      color: #718096;
-      font-size: 12px;
-      line-height: 1.45;
+
+      margin:
+        8px 0 0;
+
+      color:#718096;
+
+      font-size:12px;
+
+      line-height:1.45;
     }
+
 
     .spinner {
-      width: 38px;
-      height: 38px;
-      margin: 20px auto 0;
-      border: 4px solid #e4e8f0;
-      border-top-color: #34499a;
-      border-radius: 50%;
-      animation: spin .8s linear infinite;
+
+      width:38px;
+      height:38px;
+
+      margin:
+        20px auto 0;
+
+      border:
+        4px solid #e4e8f0;
+
+      border-top-color:
+        #34499a;
+
+      border-radius:50%;
+
+      animation:
+        spin .8s linear infinite;
     }
 
+
     @keyframes spin {
-      to { transform: rotate(360deg); }
+
+      to {
+        transform:
+          rotate(360deg);
+      }
+
     }
+
+
+
+    /* =====================================================
+       PWA INSTALLATION
+       ===================================================== */
+
+    #installOverlay {
+
+      position:fixed;
+
+      inset:0;
+
+      z-index:99999;
+
+      display:none;
+
+      align-items:flex-end;
+      justify-content:center;
+
+      padding:16px;
+
+      background:
+        rgba(15,22,42,.72);
+
+      backdrop-filter:
+        blur(7px);
+
+      -webkit-backdrop-filter:
+        blur(7px);
+    }
+
+
+    #installOverlay.show {
+
+      display:flex;
+    }
+
+
+    .install-card {
+
+      width:
+        min(450px,100%);
+
+      padding:
+        26px 21px;
+
+      margin-bottom:
+        env(safe-area-inset-bottom);
+
+      border-radius:25px;
+
+      background:#fff;
+
+      text-align:center;
+
+      box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.32);
+    }
+
+
+    .install-icon {
+
+      width:82px;
+      height:82px;
+
+      margin:
+        0 auto 14px;
+
+      display:flex;
+
+      align-items:center;
+      justify-content:center;
+
+      border-radius:22px;
+
+      background:#fff;
+
+      border:
+        1px solid #e4e8f0;
+
+      box-shadow:
+        0 8px 22px
+        rgba(38,54,111,.10);
+    }
+
+
+    .install-icon img {
+
+      width:72px;
+      height:72px;
+
+      object-fit:contain;
+
+      border-radius:18px;
+    }
+
+
+    .install-brand {
+
+      color:#34499a;
+
+      font-size:9px;
+
+      font-weight:900;
+
+      letter-spacing:.08em;
+    }
+
+
+    .install-card h2 {
+
+      margin:
+        7px 0 8px;
+
+      color:#25346f;
+
+      font-size:23px;
+
+      font-weight:900;
+    }
+
+
+    .install-card p {
+
+      color:#718096;
+
+      font-size:13px;
+
+      line-height:1.5;
+    }
+
+
+    .install-button {
+
+      width:100%;
+
+      min-height:54px;
+
+      margin-top:20px;
+
+      border:0;
+
+      border-radius:14px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #25346f,
+          #34499a
+        );
+
+      color:#fff;
+
+      font-size:14px;
+
+      font-weight:900;
+
+      cursor:pointer;
+    }
+
+
+    .install-later {
+
+      width:100%;
+
+      min-height:48px;
+
+      margin-top:9px;
+
+      border:0;
+
+      border-radius:14px;
+
+      background:#edf0f5;
+
+      color:#354052;
+
+      font-size:12px;
+
+      font-weight:900;
+
+      cursor:pointer;
+    }
+
+
+    #iosHelp {
+
+      display:none;
+
+      margin-top:16px;
+
+      padding:17px;
+
+      border-radius:15px;
+
+      background:#eef1fb;
+
+      color:#25346f;
+
+      font-size:13px;
+
+      line-height:1.5;
+    }
+
+
+    .browser-help {
+
+      margin-top:15px;
+
+      padding:15px;
+
+      border-radius:15px;
+
+      background:#eef1fb;
+
+      color:#25346f;
+
+      font-size:12px;
+
+      line-height:1.6;
+    }
+
+
   </style>
+
 </head>
+
 
 <body>
 
+
+  <!-- =====================================================
+       GOOGLE APPS SCRIPT
+       ===================================================== -->
+
   <iframe
+
     id="einsatzfotosFrame"
+
     src="https://script.google.com/a/macros/feuerwehr-stpoelten.at/s/AKfycbzXezf6v1Awy4reSELJwuNy_T3PHSMICD7xBCsp4BpF4DxUOm98kpBrYYF4hkuSI8WsaQ/exec"
-    allow="camera; clipboard-read; clipboard-write"
+
+    allow="
+      camera;
+      clipboard-read;
+      clipboard-write
+    "
+
   ></iframe>
 
-  <div id="loading">
-    <div class="card">
-      <div class="app-icon">
-        <img src="./einsatzfotos-icon-kamera.png?v=20260922b" alt="Feuerwehr St. Pölten-Stadt Einsatzfotos">      </div>
 
-      <div class="brand">FEUERWEHR ST. PÖLTEN-STADT</div>
-      <h1>Einsatzfotos</h1>
-      <p>Fotoübermittlung wird geladen …</p>
+
+  <!-- =====================================================
+       LOADING
+       ===================================================== -->
+
+  <div id="loading">
+
+    <div class="card">
+
+      <div class="app-icon">
+
+        <img
+          src="./einsatzfotos-icon-kamera.png?v=20260924"
+          alt="Einsatzfotos"
+        >
+
+      </div>
+
+
+      <div class="brand">
+
+        FEUERWEHR ST. PÖLTEN-STADT
+
+      </div>
+
+
+      <h1>
+        Einsatzfotos
+      </h1>
+
+
+      <p>
+        Fotoübermittlung wird geladen …
+      </p>
+
 
       <div class="spinner"></div>
+
     </div>
+
   </div>
 
+
+
+  <!-- =====================================================
+       INSTALLATION
+       ===================================================== -->
+
+  <div id="installOverlay">
+
+    <div class="install-card">
+
+
+      <div class="install-icon">
+
+        <img
+          src="./einsatzfotos-icon-kamera.png?v=20260924"
+          alt="Einsatzfotos"
+        >
+
+      </div>
+
+
+      <div class="install-brand">
+
+        FEUERWEHR ST. PÖLTEN-STADT
+
+      </div>
+
+
+      <h2>
+        Einsatzfotos installieren
+      </h2>
+
+
+      <p id="installText">
+
+        Einsatzfotos kann als App
+        auf diesem Gerät installiert werden.
+
+      </p>
+
+
+
+      <!-- APPLE -->
+
+      <div id="iosHelp">
+
+        <strong>
+          iPhone / iPad
+        </strong>
+
+        <br><br>
+
+        Tippe unten in Safari auf
+
+        <br><br>
+
+        <strong>
+          Teilen ⬆️
+        </strong>
+
+        <br><br>
+
+        und anschließend auf
+
+        <br>
+
+        <strong>
+          „Zum Home-Bildschirm“
+        </strong>
+
+      </div>
+
+
+
+      <!-- INSTALL BUTTON -->
+
+      <button
+
+        id="installButton"
+
+        class="install-button"
+
+        style="display:none;"
+
+      >
+
+        📲 App installieren
+
+      </button>
+
+
+
+      <button
+
+        id="installLater"
+
+        class="install-later"
+
+      >
+
+        Jetzt nicht
+
+      </button>
+
+
+    </div>
+
+  </div>
+
+
+
   <script>
-    const frame = document.getElementById('einsatzfotosFrame');
-    const loading = document.getElementById('loading');
 
-    frame.addEventListener('load', function() {
-      loading.style.display = 'none';
-    });
+    /* =====================================================
+       ELEMENTE
+       ===================================================== */
 
-    setTimeout(function() {
-      loading.style.display = 'none';
-    }, 10000);
+    const frame =
+      document.getElementById(
+        'einsatzfotosFrame'
+      );
 
-    // Falls in diesem GitHub-Repo noch ein alter Service Worker hängt:
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then(function(regs) {
-        regs.forEach(function(reg) {
-          try {
-            const scopePath = new URL(reg.scope).pathname;
-            const here = new URL('.', location.href).pathname;
-            if (scopePath === here) reg.unregister();
-          } catch (_) {}
-        });
-      });
+
+    const loading =
+      document.getElementById(
+        'loading'
+      );
+
+
+    const installOverlay =
+      document.getElementById(
+        'installOverlay'
+      );
+
+
+    const installButton =
+      document.getElementById(
+        'installButton'
+      );
+
+
+    const installLater =
+      document.getElementById(
+        'installLater'
+      );
+
+
+    const installText =
+      document.getElementById(
+        'installText'
+      );
+
+
+    const iosHelp =
+      document.getElementById(
+        'iosHelp'
+      );
+
+
+
+    /* =====================================================
+       LOADING AUSBLENDEN
+       ===================================================== */
+
+    frame.addEventListener(
+      'load',
+      function() {
+
+        loading.style.display =
+          'none';
+
+      }
+    );
+
+
+    setTimeout(
+      function() {
+
+        loading.style.display =
+          'none';
+
+      },
+      10000
+    );
+
+
+
+    /* =====================================================
+       PWA PARAMETER
+       ===================================================== */
+
+    const params =
+      new URLSearchParams(
+        location.search
+      );
+
+
+    const installRequested =
+      params.get('install') === '1';
+
+
+
+    /* =====================================================
+       IST APP BEREITS INSTALLIERT?
+       ===================================================== */
+
+    function isInstalled() {
+
+      return (
+
+        window.matchMedia(
+          '(display-mode: standalone)'
+        ).matches
+
+        ||
+
+        window.navigator.standalone === true
+
+      );
+
     }
+
+
+
+    /* =====================================================
+       PWA INSTALL EVENT
+       ===================================================== */
+
+    let deferredPrompt =
+      null;
+
+
+    window.addEventListener(
+
+      'beforeinstallprompt',
+
+      function(event) {
+
+
+        console.log(
+          'Einsatzfotos: Installation verfügbar'
+        );
+
+
+        event.preventDefault();
+
+
+        deferredPrompt =
+          event;
+
+
+        if (
+          installRequested &&
+          !isInstalled()
+        ) {
+
+          showInstall();
+
+        }
+
+      }
+
+    );
+
+
+
+    /* =====================================================
+       INSTALLATION ANZEIGEN
+       ===================================================== */
+
+    function showInstall() {
+
+
+      if (isInstalled()) {
+
+        cleanUrl();
+
+        return;
+      }
+
+
+      iosHelp.style.display =
+        'none';
+
+
+      installButton.style.display =
+        'block';
+
+
+      installText.innerHTML =
+        `
+        Einsatzfotos kann als App
+        auf diesem Gerät installiert werden.
+        `;
+
+
+      installOverlay.classList.add(
+        'show'
+      );
+
+    }
+
+
+
+    /* =====================================================
+       IOS
+       ===================================================== */
+
+    function showIosInstall() {
+
+
+      installButton.style.display =
+        'none';
+
+
+      iosHelp.style.display =
+        'block';
+
+
+      installText.innerHTML =
+        `
+        Installiere Einsatzfotos
+        auf deinem Home-Bildschirm.
+        `;
+
+
+      installOverlay.classList.add(
+        'show'
+      );
+
+    }
+
+
+
+    /* =====================================================
+       SAMSUNG FALLBACK
+       ===================================================== */
+
+    function showSamsungHelp() {
+
+
+      installButton.style.display =
+        'none';
+
+
+      iosHelp.style.display =
+        'none';
+
+
+      installText.innerHTML =
+        `
+        <b>
+          Einsatzfotos wurde geöffnet.
+        </b>
+
+        <div class="browser-help">
+
+          Falls dein Browser keinen
+          Installationsdialog anzeigt:
+
+          <br><br>
+
+          <b>
+            ☰ Browser-Menü
+          </b>
+
+          <br>
+
+          → <b>Seite hinzufügen zu</b>
+
+          <br>
+
+          → <b>Startbildschirm</b>
+
+        </div>
+        `;
+
+
+      installOverlay.classList.add(
+        'show'
+      );
+
+    }
+
+
+
+    /* =====================================================
+       INSTALL BUTTON
+       ===================================================== */
+
+    installButton.addEventListener(
+
+      'click',
+
+      async function() {
+
+
+        if (!deferredPrompt) {
+
+          showSamsungHelp();
+
+          return;
+        }
+
+
+        deferredPrompt.prompt();
+
+
+        const result =
+          await deferredPrompt.userChoice;
+
+
+        console.log(
+          'Installation:',
+          result.outcome
+        );
+
+
+        deferredPrompt =
+          null;
+
+
+        installOverlay.classList.remove(
+          'show'
+        );
+
+
+        cleanUrl();
+
+      }
+
+    );
+
+
+
+    /* =====================================================
+       SPÄTER
+       ===================================================== */
+
+    installLater.addEventListener(
+
+      'click',
+
+      function() {
+
+
+        installOverlay.classList.remove(
+          'show'
+        );
+
+
+        cleanUrl();
+
+      }
+
+    );
+
+
+
+    /* =====================================================
+       URL AUFRÄUMEN
+       ===================================================== */
+
+    function cleanUrl() {
+
+
+      const url =
+        new URL(
+          location.href
+        );
+
+
+      url.searchParams.delete(
+        'install'
+      );
+
+
+      url.searchParams.delete(
+        'source'
+      );
+
+
+      history.replaceState(
+
+        {},
+
+        '',
+
+        url.pathname +
+        url.search +
+        url.hash
+
+      );
+
+    }
+
+
+
+    /* =====================================================
+       INSTALLATION ABGESCHLOSSEN
+       ===================================================== */
+
+    window.addEventListener(
+
+      'appinstalled',
+
+      function() {
+
+
+        console.log(
+          'Einsatzfotos installiert'
+        );
+
+
+        deferredPrompt =
+          null;
+
+
+        installOverlay.classList.remove(
+          'show'
+        );
+
+
+        cleanUrl();
+
+      }
+
+    );
+
+
+
+    /* =====================================================
+       START
+       ===================================================== */
+
+    window.addEventListener(
+
+      'load',
+
+      function() {
+
+
+        if (!installRequested) {
+
+          return;
+        }
+
+
+        if (isInstalled()) {
+
+          cleanUrl();
+
+          return;
+        }
+
+
+        const ua =
+          navigator.userAgent;
+
+
+        const ios =
+
+          /iPhone|iPad|iPod/i.test(ua)
+
+          ||
+
+          (
+            navigator.platform ===
+              'MacIntel'
+
+            &&
+
+            navigator.maxTouchPoints > 1
+          );
+
+
+        /* APPLE */
+
+        if (ios) {
+
+
+          setTimeout(
+
+            showIosInstall,
+
+            600
+
+          );
+
+
+          return;
+        }
+
+
+
+        /*
+         ANDROID / CHROME / SAMSUNG
+
+         Browser bekommt 5 Sekunden Zeit,
+         beforeinstallprompt auszulösen.
+        */
+
+        setTimeout(
+
+          function() {
+
+
+            if (deferredPrompt) {
+
+              showInstall();
+
+            }
+
+            else {
+
+              showSamsungHelp();
+
+            }
+
+          },
+
+          5000
+
+        );
+
+      }
+
+    );
+
+
+
+    /* =====================================================
+       SERVICE WORKER
+       ===================================================== */
+
+    if (
+      'serviceWorker' in navigator
+    ) {
+
+
+      window.addEventListener(
+
+        'load',
+
+        function() {
+
+
+          navigator.serviceWorker
+            .register(
+              './sw.js'
+            )
+
+            .then(
+              function(registration) {
+
+                console.log(
+                  'Einsatzfotos Service Worker aktiv:',
+                  registration.scope
+                );
+
+              }
+            )
+
+            .catch(
+              function(error) {
+
+                console.error(
+                  'Service Worker Fehler:',
+                  error
+                );
+
+              }
+            );
+
+        }
+
+      );
+
+    }
+
+
   </script>
+
 
 </body>
 </html>
